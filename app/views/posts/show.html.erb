@@ -1,0 +1,9 @@
+<%
+=begin%>
+ <h1><%= @post.title %></h1>
+<%= image_tag url_for(@post.avatar) %>
+ <p><%= @post.description%></p>
+<%=link_to "Back" ,  posts_path%>
+ 
+<%
+=end%>

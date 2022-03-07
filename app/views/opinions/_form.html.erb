@@ -1,0 +1,15 @@
+<%
+=begin%>
+ <center>
+  <%= form_for [ @post,@opinion ] do |form| %>
+    <div>
+      <%= form.label :statment %><br>
+      <%= form.text_area :statment %>
+    </div>
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</center> 
+<%
+=end%>

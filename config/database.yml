@@ -1,0 +1,7 @@
+development:
+  database: login_development
+  adapter: postgresql
+  encoding: unicode
+  username: mishal
+  password: root
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

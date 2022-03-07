@@ -1,0 +1,16 @@
+<% @opinions.each do |opinion| %>
+<h2> <div class="d-flex">
+                <%if user_signed_in?%>
+                    <%= current_user.first_name%><%=opinion.statment%></h2>
+                    <%end%>
+<ul>
+  <li><%= button_to "Destroy", post_opinion_path(opinion.post_id , opinion), method: :delete%></li>
+</ul>
+  <% end %>
+  <%
+=begin%>
+ <%= link_to "Add Comment" , new_post_opinion_path()%></br> 
+<%
+=end%>
+  <%=link_to "Back" ,  posts_path%>
+

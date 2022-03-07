@@ -1,0 +1,43 @@
+<% @posts.each do |post| %>
+    <div class="d-flex justify-content-center">
+        <div class="card text-center" style="width: 18rem;">
+            <div class="card-body">
+                <div class="dropdown">
+                    <div class="displaymethod">
+                        <button class="btn btn-primary btn-sm float-right">Dropdown</button>
+                        <div class="dropdown-content">
+                            <a href="/posts/<%=post.id%>/edit">Edit</a>
+                            <%= button_to "Delete", post_path(post) , method: :delete %>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="card-title">
+                    <h2> <%=post.title%></h2>
+                    <% if post.avatar&.blob.present? %>
+                        <%= image_tag url_for(post.avatar.variant(resize_to_limit: [128, 128])) %>
+                    <% end %>
+                </h5>
+                
+                <p class="card-text">
+                    <%=post.description%>
+                </p>
+
+                <p class="d-inline p-2">
+                    <%= link_to "", like_path(post.id), method: :put, class: "fa fa-thumbs-up fa-lg" %>
+                    <%= post.likes.count %>
+                </p>
+
+                <%= render :partial => post.opinions %>
+
+                <%= form_with(model: [post, post.opinions.build]) do |f| %>
+                    <div class="form-group">
+                        <%= f.label 'Add comment' %>
+                        <%= f.text_field :statment, class: 'form-control' , placeholder: "Comment Something" %>
+                    </div>
+                    <%= f.submit 'Send', class: 'btn btn-primary' %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+<% end %>
