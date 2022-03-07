@@ -7,17 +7,18 @@ class PostsController < ApplicationController
 
   def index
     @posts = @user.posts.all
-    
+
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @posts }
-      format.json { render :json => @posts }
+      format.xml  { render xml: @posts }
+      format.json { render json: @posts }
       format.atom
     end
   end
+
   def public
     @posts = Post.published
-  end 
+  end
 
   def show; end
 
@@ -70,6 +71,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :avatar ,:published)
+    params.require(:post).permit(:title, :description, :avatar, :published)
   end
 end
